@@ -6,3 +6,5 @@ const { addAmountToWallet } = require('../../controller/wallet-controller')
 
 
 router.post('/', addAmountToWallet)
+
+module.exports = router

@@ -1,6 +1,13 @@
 {
     "users": [],
-    "products": [],
+    "products": [
+        {
+            "id": "lksadnfanfj@#$adfqwe34af",
+            "name": "Mobile",
+            "price": 25000,
+            "isSold": false
+        }
+    ],
     "wallet": [],
     "trasection": [],
     "purchase": []
