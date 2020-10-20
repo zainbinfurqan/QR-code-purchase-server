@@ -7,11 +7,7 @@ exports.registrationFN = async (req, res, next) => {
         let payload = req.body;
 
         const validate = await validation(req.body)
-        // console.log(validate)
         if (validate.length) {
-            // throw validate
-            // throw new Error({ ...validate })
-            // next()
             res.status(404).json({ ...validate })
         } else {
 
@@ -34,9 +30,7 @@ exports.registrationFN = async (req, res, next) => {
         }
 
     } catch (error) {
-        // console.log(error)
-        // next(error)
-        // next({ message: error });
+        res.status(400).json({ message: error.message })
     }
 }
 
