@@ -47,7 +47,7 @@ exports.checkIsProductAvaliable = async (req, res, next) => {
         console.log(isProductAvaliable)
         if (isProductAvaliable.length > 0) {
             if (isProductAvaliable[0].isSold) {
-                res.status(200).json({ message: 'This QR code is already soldout' })
+                res.status(400).json({ message: 'This QR code is already soldout' })
             } else {
                 res.status(200).json({ isSold: false })
             }
