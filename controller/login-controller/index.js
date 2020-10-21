@@ -4,15 +4,13 @@ const Data = require('../../data.json')
 exports.loginFN = async (req, res) => {
     try {
         let payload = req.body;
-
-        const validate = validation(req.body)
-        if (validate) { res.status(400).json({ ...validate }) } else {
-
-
+        const validate = await validation(req.body)
+        if (validate.length > 0) { res.status(400).json({ error: validate }) }
+        else {
             let isUserExsist = Data.users.filter(items =>
                 items.email.toUpperCase() == payload.email.toUpperCase()
             );
-            if (isUserExsist) {
+            if (isUserExsist.length > 0) {
                 let passwordIsValid = bcrypt.compareSync(payload.password, isUserExsist[0].password);
 
                 if (!passwordIsValid) { res.status(400).json({ message: 'Email or password no correct' }) }
@@ -31,13 +29,12 @@ exports.loginFN = async (req, res) => {
 }
 
 async function validation(body) {
-    const error = {};
+    const error = [];
     if (!body.email) {
-        error.email = 'Email is required'
+        error.push("Email is required")
     }
     if (!body.password) {
-        error.password = 'Password is required'
+        error.push("Password is required")
     }
-
     return error
 }

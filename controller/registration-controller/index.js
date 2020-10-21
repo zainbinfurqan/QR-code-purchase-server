@@ -5,10 +5,12 @@ const bcrypt = require("bcryptjs");
 exports.registrationFN = async (req, res, next) => {
     try {
         let payload = req.body;
-
+        console.log(req.body)
+        console.log(payload)
         const validate = await validation(req.body)
+        console.log(validate)
         if (validate.length) {
-            res.status(404).json({ ...validate })
+            res.status(404).json({ error: validate })
         } else {
 
             let isUserExsist = Data.users.filter(items => items.email.toUpperCase() == payload.email.toUpperCase());
@@ -24,6 +26,7 @@ exports.registrationFN = async (req, res, next) => {
                 payload.password = await bcrypt.hash(payload.password, salt);
 
                 Data.users.push(payload)
+                console.log(payload)
 
                 res.status(200).json({ ...payload })
             }

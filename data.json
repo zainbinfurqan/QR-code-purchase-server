@@ -1,8 +1,15 @@
 {
-    "users": [],
+    "users": [
+        {
+            "id": "o2k3rofn34n23u40g",
+            "fullName": "Zain Ahmed",
+            "email": "zain.ahmed199525@gmail.com",
+            "password": "123"
+        }
+    ],
     "products": [
         {
-            "id": "lksadnfanfj@#$adfqwe34af",
+            "id": "lksadnfadfqwe34afanfj",
             "name": "Mobile",
             "price": 25000,
             "isSold": false

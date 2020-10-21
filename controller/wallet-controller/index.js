@@ -6,11 +6,10 @@ exports.addAmountToWallet = async (req, res) => {
     try {
 
         let payload = req.body;
-        let isWalletFound = Data.wallet.findIndex(item => item.user == payload.user)
+        let isWalletFound = Data.wallet.findIndex(item => item.user == req.headers.authorization)
         if (isWalletFound != -1) {
 
             Data.wallet[isWalletFound].totalAmount = Number(Data.wallet[isWalletFound].totalAmount) + Number(payload.amount);
-
             res.status(200).json({ ...Data.wallet[isWalletFound] })
 
         } else {
@@ -18,13 +17,12 @@ exports.addAmountToWallet = async (req, res) => {
             payload['id'] = randomString.generate();
             let walletIntiety = {
                 id: randomString.generate(),
-                user: payload.user,
-                totalAmount: payload.amount,
+                user: req.headers.authorization,
+                totalAmount: Number(payload.amount),
                 isBlocked: false
             }
             Data.wallet.push(walletIntiety)
-            userWallet = Data.wallet.filter(item => item.user == payload.user)
-
+            userWallet = Data.wallet.filter(item => item.user == req.headers.authorization)
             res.status(200).json({ ...userWallet[0] })
 
         }
@@ -37,7 +35,13 @@ exports.addAmountToWallet = async (req, res) => {
 exports.getWalletAmount = async (req, res, next) => {
     try {
 
+        let wallet = Data.wallet.filter(item => item.user == req.headers.authorization);
+        if (wallet.length > 0) {
+            res.status(200).json({ ...wallet[0] })
+        } else {
+            res.status(400).json({ message: 'Insuficent balance' })
+        }
     } catch (error) {
-
+        res.status(400).json({ message: error.message })
     }
 }
