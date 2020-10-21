@@ -28,7 +28,7 @@ exports.addAmountToWallet = async (req, res) => {
         }
 
     } catch (error) {
-        res.status(500).json({ message: error.message })
+        res.status(400).json({ message: error.message })
     }
 }
 
@@ -39,9 +39,9 @@ exports.getWalletAmount = async (req, res, next) => {
         if (wallet.length > 0) {
             res.status(200).json({ ...wallet[0] })
         } else {
-            res.status(500).json({ message: 'Insuficent balance' })
+            res.status(400).json({ message: 'Insuficent balance' })
         }
     } catch (error) {
-        res.status(500).json({ message: error.message })
+        res.status(400).json({ message: error.message })
     }
 }
