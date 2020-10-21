@@ -49,7 +49,7 @@ app.use(cors())
 // Load environment variables
 
 const data = require('./data.json')
-console.log(data)
+// console.log(data)
 
 const AuthRoutes = require('./routes/Authentication-routes')
 const WalletRoute = require('./routes/wallet-routes')

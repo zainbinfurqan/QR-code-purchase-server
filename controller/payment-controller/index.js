@@ -3,11 +3,14 @@ const Data = require('../../data.json')
 exports.QRCodePayment = async (req, res) => {
     try {
 
-        let getUserWallet = Data.wallet.filter(item => item.user == req.body.user);
-        let userWalletIndex = Data.wallet.findIndex(item => item.user == req.body.user);
+        let getUserWallet = Data.wallet.filter(item => item.user == req.headers.authorization);
+        let userWalletIndex = Data.wallet.findIndex(item => item.user == req.headers.authorization);
         let productIndex = Data.products.findIndex(item => item.id == req.body.product)
+        console.log(getUserWallet)
+        console.log(userWalletIndex)
+        console.log(productIndex)
         if (getUserWallet.length == 0) {
-            res.status(400).json({ message: 'Something goes wrong' })
+            res.status(400).json({ message: "somthing went wrong" })
         } else {
             if (getUserWallet[0].totalAmount < Number(req.body.payAmount)) {
                 res.status(400).json({ message: 'You have insificent balance' })
