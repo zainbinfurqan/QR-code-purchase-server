@@ -46,9 +46,17 @@ app.use(cors())
 //     res.status(500).send('Something broke!')
 // })
 
+
+// {
+//     "id": "lksadnfadfqwe34afanfj",
+//     "name": "Mobile",
+//     "price": 25000,
+//     "isSold": false
+// }
+
 // Load environment variables
 
-const data = require('./data.json')
+const Data = require('./data.json')
 // console.log(data)
 
 const AuthRoutes = require('./routes/Authentication-routes')
@@ -63,7 +71,7 @@ app.use('/api/product', ProductRoute)
 // app.use('/api/auth', AuthRoutes)
 
 
-
+console.log(Data)
 
 const server = app.listen(keys.PORT, () =>
     console.log("server is running on port", keys.PORT)

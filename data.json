@@ -7,14 +7,7 @@
             "password": "123"
         }
     ],
-    "products": [
-        {
-            "id": "lksadnfadfqwe34afanfj",
-            "name": "Mobile",
-            "price": 25000,
-            "isSold": false
-        }
-    ],
+    "products": [],
     "wallet": [],
     "trasection": [],
     "purchase": []
