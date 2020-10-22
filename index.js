@@ -54,10 +54,12 @@ const data = require('./data.json')
 const AuthRoutes = require('./routes/Authentication-routes')
 const WalletRoute = require('./routes/wallet-routes')
 const PaymentRoute = require('./routes/Payment-routes')
+const ProductRoute = require('./routes/Product-route')
 // routes
 app.use('/api/auth', AuthRoutes)
 app.use('/api/wallet', WalletRoute)
 app.use('/api/payment', PaymentRoute)
+app.use('/api/product', ProductRoute)
 // app.use('/api/auth', AuthRoutes)
 
 
