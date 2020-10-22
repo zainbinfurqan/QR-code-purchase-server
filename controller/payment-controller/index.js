@@ -9,6 +9,7 @@ exports.QRCodePayment = async (req, res) => {
         console.log(getUserWallet)
         console.log(userWalletIndex)
         console.log(productIndex)
+        console.log(req.body)
         if (getUserWallet.length == 0) {
             res.status(400).json({ message: "somthing went wrong" })
         } else {
@@ -42,9 +43,7 @@ exports.QRCodePayment = async (req, res) => {
 exports.checkIsProductAvaliable = async (req, res, next) => {
     try {
         let payload = req.query;
-        console.log(payload)
         let isProductAvaliable = Data.products.filter(item => item.id == payload.product);
-        console.log(isProductAvaliable)
         if (isProductAvaliable.length > 0) {
             if (isProductAvaliable[0].isSold) {
                 res.status(400).json({ message: 'This QR code is already soldout' })
