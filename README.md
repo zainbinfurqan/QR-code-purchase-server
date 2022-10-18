@@ -4,11 +4,20 @@ Server build for QR code purchasing mobile app
 
 ## Installation
 
+cd directory
+
+1. Clone the repo
+
+```bash
+ git clone repo link
+```
+
+2. Install dependences
 ```bash
  npm install or npm i 
 ```
-then
 
+3. start project
 ```bash
   npm start or nodemon
 ```
